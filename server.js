@@ -5,18 +5,43 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-
-var articleOne={
-    title: 'Article one | Ankit choudhary',
-    heading: 'Article one',
-    date: 'Apr 19, 2018',
-    content: ` 
-                <p>
-                    This is my first article.My name is Ankit choudhary.I am a B.Tech cse student.I am in my final year.I love coding.
-                </p>
-                <p>
-                    I am passionate about coding and a data science enthusiast.I have a penchant for learning new hings and i am a firm believer in the saying that failures are the pillar of success.
-                </p>`
+var articles={
+    'article-one':{
+        title: 'Article one | Ankit choudhary',
+        heading: 'Article one',
+        date: 'Apr 19, 2018',
+        content: ` 
+                    <p>
+                        This is my first article.My name is Ankit choudhary.I am a B.Tech cse student.I am in my final year.I love coding.
+                    </p>
+                    <p>
+                        I am passionate about coding and a data science enthusiast.I have a penchant for learning new hings and i am a firm believer in the saying that failures are the pillar of success.
+                    </p>`
+    },
+    'article-two':{
+        title: 'Article Two | Ankit choudhary',
+        heading: 'Article Two',
+        date: 'Apr 19, 2018',
+        content: ` 
+                    <p>
+                        This is my second article.My name is Ankit choudhary.I am a B.Tech cse student.I am in my final year.I love coding.
+                    </p>
+                    <p>
+                        I am passionate about coding and a data science enthusiast.I have a penchant for learning new hings and i am a firm believer in the saying that failures are the pillar of success.
+                    </p>`
+    },
+    'article-three':{
+        title: 'Article Three | Ankit choudhary',
+        heading: 'Article Three',
+        date: 'Apr 19, 2018',
+        content: ` 
+                    <p>
+                        This is my third article.My name is Ankit choudhary.I am a B.Tech cse student.I am in my final year.I love coding.
+                    </p>
+                    <p>
+                        I am passionate about coding and a data science enthusiast.I have a penchant for learning new hings and i am a firm believer in the saying that failures are the pillar of success.
+                    </p>`
+    }
 };
 function  createTemplate(data){
     var title=data.title;
@@ -60,8 +85,11 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one',function(req,res){
-   res.send(createTemplate(articleOne)); 
+app.get('/:articleName',function(req,res){
+    //articleName==article-one
+    //articles[articleName]={} content object for article one
+    var articleName=req.params.articleName;
+   res.send(createTemplate(articles[articleName])); 
 });
 
 app.get('/article-two',function(req,res){
