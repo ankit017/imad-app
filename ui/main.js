@@ -20,5 +20,5 @@ var counter=0;
 button.onclick=function() {
     counter=counter+1;
     var span=document.getElementById('span');
-    span.innerHtml=counter.toString();
+    span.value=counter.toString();
 };
