@@ -19,6 +19,6 @@ var counter=0;
 
 button.onclick=function () {
     counter=counter+1;
-    var span=documemt.getElementById('span');
+    var span=document.getElementById('span');
     span.innerHtml=counter.toString();
 };
